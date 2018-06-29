@@ -1,0 +1,2 @@
+# xtyghost.github.io
+myBlog
