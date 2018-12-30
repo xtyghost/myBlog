@@ -95,7 +95,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="fkghost.com/2018/09/19/deploy/mysql安装/" data-id="cjqb5muur00032vks7jhnpkfk" class="article-share-link">Share</a>
+      <a data-url="fkghost.com/2018/09/19/deploy/mysql安装/" data-id="cjqb5yenu00004sksfjtix4gb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">deploy</a></li></ul>
@@ -139,29 +139,21 @@
 <p>官方链接：<a href="https://link.jianshu.com?t=http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a></p>
 <p>网易每5小时更新一次yum源<br> 支持架构为：i386，x86_64，SRPMS<br> 支持的centos版本为：5.x和6.x系列</p>
 <ol>
-<li>首先备份<code>/etc/yum.repos.d/CentOS-Base.repo</code> </li>
+<li><p>首先备份<code>/etc/yum.repos.d/CentOS-Base.repo</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line"> /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入yum源配置文件所在文件夹</p>
+</li>
 </ol>
-<blockquote>
-<p>mv /etc/yum.repos.d/CentOS-Base.repo<br> /etc/yum.repos.d/CentOS-Base.repo.backup</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# cd /etc/yum.repos.d/</span><br></pre></td></tr></table></figure>
 <ol>
-<li>进入yum源配置文件所在文件夹</li>
+<li><p>下载163的yum源配置文件，放入<code>/etc/yum.repos.d/</code>(操作前请做好相应备份)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]#</span><br><span class="line"> wget http://mirrors.163.com/.help/CentOS7-Base-163.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>yum makecache</code>生成缓存</p>
+</li>
 </ol>
-<blockquote>
-<p>[root@localhost yum.repos.d]# cd /etc/yum.repos.d/</p>
-</blockquote>
-<ol>
-<li>下载163的yum源配置文件，放入<code>/etc/yum.repos.d/</code>(操作前请做好相应备份)</li>
-</ol>
-<blockquote>
-<p>[root@localhost yum.repos.d]#<br> wget <a href="https://link.jianshu.com?t=http://mirrors.163.com/.help/CentOS7-Base-163.repo" target="_blank" rel="noopener">http://mirrors.163.com/.help/CentOS7-Base-163.repo</a></p>
-</blockquote>
-<ol>
-<li>运行<code>yum makecache</code>生成缓存</li>
-</ol>
-<blockquote>
-<p>[root@localhost yum.repos.d]# yum clean all<br> [root@localhost yum.repos.d]# yum makecache</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line"> [root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
 <ol>
 <li>更新系统</li>
 </ol>
@@ -192,13 +184,9 @@
 </blockquote>
 <p>完成该命令后，在<code>/etc/yum.repos.d</code>目录下会多一个<code>elrepo.repo</code>文件。</p>
 <h2 id="Nux-Dextop"><a href="#Nux-Dextop" class="headerlink" title="Nux Dextop"></a>Nux Dextop</h2><p><a href="https://link.jianshu.com?t=http://li.nux.ro/repos.html" target="_blank" rel="noopener">Nux Dextop</a> 中包含了一些与多媒体相关的软件包。官方说明中说该源依赖于EPEL。</p>
-<blockquote>
-<p>sudo yum -y install epel-release &amp;&amp; rpm -Uvh<br> <a href="https://link.jianshu.com?t=http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm" target="_blank" rel="noopener">http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</a></p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install epel-release &amp;&amp; rpm -Uvh</span><br><span class="line"> http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>因为我们已经安装过EPEL，所以只需要执行</p>
-<blockquote>
-<p>sudo rpm -Uvh <a href="https://link.jianshu.com?t=http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm" target="_blank" rel="noopener">http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</a></p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>完成该命令后，在<code>/etc/yum.repos.d</code>目录下会多一个<code>nux-dextop.repo</code>文件。</p>
 <h2 id="安装yum-axelget插件"><a href="#安装yum-axelget插件" class="headerlink" title="安装yum-axelget插件"></a>安装yum-axelget插件</h2><p><a href="https://link.jianshu.com?t=https://dl.fedoraproject.org/pub/epel/7/x86_64/repoview/yum-axelget.html" target="_blank" rel="noopener">yum-axelget</a> 是 EPEL 提供的一个 yum 插件。使用该插件后用 yum 安装软件时可以并行下载，大大提高了软件的下载速度，减少了下载的等待时间:</p>
 <blockquote>
@@ -208,15 +196,11 @@
 <h2 id="进行全面更新"><a href="#进行全面更新" class="headerlink" title="进行全面更新"></a>进行全面更新</h2><blockquote>
 <p>sudo yum -y update</p>
 </blockquote>
-<p>作者：maxwell2ic</p>
-<p>链接：<a href="https://www.jianshu.com/p/436391d31d7f" target="_blank" rel="noopener">https://www.jianshu.com/p/436391d31d7f</a></p>
-<p>來源：简书</p>
-<p>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="fkghost.com/2018/09/12/deploy/yum的配置/" data-id="cjqb5muus00052vkshb922qvn" class="article-share-link">Share</a>
+      <a data-url="fkghost.com/2018/09/12/deploy/yum的配置/" data-id="cjqb5yeo000014sksrs6gjgtt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">deploy</a></li></ul>
@@ -321,7 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="fkghost.com/2018/09/12/deploy/redis/" data-id="cjqb5muur00042vkscfmq4g9c" class="article-share-link">Share</a>
+      <a data-url="fkghost.com/2018/09/12/deploy/redis/" data-id="cjqb5yeo400034sks1elsejxe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">deploy</a></li></ul>
@@ -388,7 +372,7 @@ nginx不仅支持http协议，还支持https（即在ssl协议上传输http）�
       
     </div>
     <footer class="article-footer">
-      <a data-url="fkghost.com/2018/09/11/deploy/ngnix安装/" data-id="cjqb5muun00012vkspg1f0gpb" class="article-share-link">Share</a>
+      <a data-url="fkghost.com/2018/09/11/deploy/ngnix安装/" data-id="cjqb5yeo600044sks5dn09bil" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">deploy</a></li></ul>
@@ -467,7 +451,7 @@ nginx不仅支持http协议，还支持https（即在ssl协议上传输http）�
       
     </div>
     <footer class="article-footer">
-      <a data-url="fkghost.com/2018/04/27/deploy/Docker/" data-id="cjqb5muuj00002vksi6sv6nwd" class="article-share-link">Share</a>
+      <a data-url="fkghost.com/2018/04/27/deploy/Docker/" data-id="cjqb5yeo700054sksv3ymptdu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">deploy</a></li></ul>

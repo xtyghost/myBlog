@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Study Blog">
 <meta property="og:description" content="Yellow dog Updater（Yum）是CentOS所有版本的默认包管理器，yum主要功能是更方便的添加/删除/更新RPM包，自动解决包的依赖性问题，便于管理大量系统的更新问题，其理念是使用一个中心仓库(repository)管理一部分甚至一个distribution的应用程序相互关系，根据计算出来的软件依赖关系进行相关的升级、安装、删除等操作，减少了Linux用户一直头痛的depende">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T16:46:49.200Z">
+<meta property="og:updated_time" content="2018-12-30T17:22:56.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yum">
 <meta name="twitter:description" content="Yellow dog Updater（Yum）是CentOS所有版本的默认包管理器，yum主要功能是更方便的添加/删除/更新RPM包，自动解决包的依赖性问题，便于管理大量系统的更新问题，其理念是使用一个中心仓库(repository)管理一部分甚至一个distribution的应用程序相互关系，根据计算出来的软件依赖关系进行相关的升级、安装、删除等操作，减少了Linux用户一直头痛的depende">
@@ -101,29 +101,21 @@
 <p>官方链接：<a href="https://link.jianshu.com?t=http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a></p>
 <p>网易每5小时更新一次yum源<br> 支持架构为：i386，x86_64，SRPMS<br> 支持的centos版本为：5.x和6.x系列</p>
 <ol>
-<li>首先备份<code>/etc/yum.repos.d/CentOS-Base.repo</code> </li>
+<li><p>首先备份<code>/etc/yum.repos.d/CentOS-Base.repo</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line"> /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入yum源配置文件所在文件夹</p>
+</li>
 </ol>
-<blockquote>
-<p>mv /etc/yum.repos.d/CentOS-Base.repo<br> /etc/yum.repos.d/CentOS-Base.repo.backup</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# cd /etc/yum.repos.d/</span><br></pre></td></tr></table></figure>
 <ol>
-<li>进入yum源配置文件所在文件夹</li>
+<li><p>下载163的yum源配置文件，放入<code>/etc/yum.repos.d/</code>(操作前请做好相应备份)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]#</span><br><span class="line"> wget http://mirrors.163.com/.help/CentOS7-Base-163.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>yum makecache</code>生成缓存</p>
+</li>
 </ol>
-<blockquote>
-<p>[root@localhost yum.repos.d]# cd /etc/yum.repos.d/</p>
-</blockquote>
-<ol>
-<li>下载163的yum源配置文件，放入<code>/etc/yum.repos.d/</code>(操作前请做好相应备份)</li>
-</ol>
-<blockquote>
-<p>[root@localhost yum.repos.d]#<br> wget <a href="https://link.jianshu.com?t=http://mirrors.163.com/.help/CentOS7-Base-163.repo" target="_blank" rel="noopener">http://mirrors.163.com/.help/CentOS7-Base-163.repo</a></p>
-</blockquote>
-<ol>
-<li>运行<code>yum makecache</code>生成缓存</li>
-</ol>
-<blockquote>
-<p>[root@localhost yum.repos.d]# yum clean all<br> [root@localhost yum.repos.d]# yum makecache</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line"> [root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
 <ol>
 <li>更新系统</li>
 </ol>
@@ -154,13 +146,9 @@
 </blockquote>
 <p>完成该命令后，在<code>/etc/yum.repos.d</code>目录下会多一个<code>elrepo.repo</code>文件。</p>
 <h2 id="Nux-Dextop"><a href="#Nux-Dextop" class="headerlink" title="Nux Dextop"></a>Nux Dextop</h2><p><a href="https://link.jianshu.com?t=http://li.nux.ro/repos.html" target="_blank" rel="noopener">Nux Dextop</a> 中包含了一些与多媒体相关的软件包。官方说明中说该源依赖于EPEL。</p>
-<blockquote>
-<p>sudo yum -y install epel-release &amp;&amp; rpm -Uvh<br> <a href="https://link.jianshu.com?t=http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm" target="_blank" rel="noopener">http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</a></p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install epel-release &amp;&amp; rpm -Uvh</span><br><span class="line"> http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>因为我们已经安装过EPEL，所以只需要执行</p>
-<blockquote>
-<p>sudo rpm -Uvh <a href="https://link.jianshu.com?t=http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm" target="_blank" rel="noopener">http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</a></p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>完成该命令后，在<code>/etc/yum.repos.d</code>目录下会多一个<code>nux-dextop.repo</code>文件。</p>
 <h2 id="安装yum-axelget插件"><a href="#安装yum-axelget插件" class="headerlink" title="安装yum-axelget插件"></a>安装yum-axelget插件</h2><p><a href="https://link.jianshu.com?t=https://dl.fedoraproject.org/pub/epel/7/x86_64/repoview/yum-axelget.html" target="_blank" rel="noopener">yum-axelget</a> 是 EPEL 提供的一个 yum 插件。使用该插件后用 yum 安装软件时可以并行下载，大大提高了软件的下载速度，减少了下载的等待时间:</p>
 <blockquote>
@@ -170,15 +158,11 @@
 <h2 id="进行全面更新"><a href="#进行全面更新" class="headerlink" title="进行全面更新"></a>进行全面更新</h2><blockquote>
 <p>sudo yum -y update</p>
 </blockquote>
-<p>作者：maxwell2ic</p>
-<p>链接：<a href="https://www.jianshu.com/p/436391d31d7f" target="_blank" rel="noopener">https://www.jianshu.com/p/436391d31d7f</a></p>
-<p>來源：简书</p>
-<p>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="fkghost.com/2018/09/12/deploy/yum的配置/" data-id="cjqb5muus00052vkshb922qvn" class="article-share-link">Share</a>
+      <a data-url="fkghost.com/2018/09/12/deploy/yum的配置/" data-id="cjqb5yeo000014sksrs6gjgtt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">deploy</a></li></ul>
